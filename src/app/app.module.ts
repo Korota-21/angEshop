@@ -14,6 +14,10 @@ import { ShopComponent } from './shop/shop.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { MainComponent } from './main/main.component';
+import { ShopRoutingModule } from './shop-routing/shop-routing.module';
 
 @NgModule({
   declarations: [
@@ -27,12 +31,16 @@ import { RegisterComponent } from './register/register.component';
     ShopComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent,
+    AdminLoginComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
     SlickCarouselModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ShopRoutingModule
 
   ],
   providers: [],
