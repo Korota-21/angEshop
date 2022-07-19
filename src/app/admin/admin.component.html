@@ -1,1 +1,109 @@
-<p>admin works!</p>
+<div class="p-4 row">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+    <div class="col">
+        <section class="cart shopping page-wrapper">
+            <div class="container">
+                <button type="button" class="btn btn-primary my-1">add new product</button>
+                <h2>view product list</h2>
+                <div *ngIf="products" class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="product-list">
+                            <form class="cart-form">
+                                <table class="table product_table_responsive cart" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-id">product Id</th>
+                                            <th class="product-thumbnail">Image</th>
+                                            <th class="product-name">name</th>
+                                            <th class="product-price">Price</th>
+                                            <th class="product-quantity">Quantity</th>
+                                            <th class="product-create-at">Created At</th>
+                                            <th class="product-updated-at">Updated At</th>
+                                            <th class="product-update"> </th>
+                                            <th class="product-remove"> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="cart_item" *ngFor="let product of products">
+                                            <td class="product-name" data-title="Product Id">
+                                                <a href="#">{{product._id}}</a>
+                                            </td>
+                                            <td class="product-thumbnail" data-title="Thumbnail">
+                                                <a routerLink="/product-single"><img src="assets/images/{{product.image}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""></a>
+                                            </td>
+                                            <td class="product-name" data-title="Product">
+                                                <a href="#">{{product.name}}</a>
+                                            </td>
+                                            <td class="product-price" data-title="Price">
+                                                <span class="amount"><span class="currencySymbol">
+                                                &#36;</span> <input type="number" id="qty" class="input-text qty text" step="1" min="0" max="9" value="1" title="Qty" size="4" [value]="product.price"><br>
+                                                </span>
+                                            </td>
+
+                                            <td class="product-quantity" data-title="Quantity"><br>
+                                                <div class="quantity"><br>
+                                                    <label class="sr-only">Quantity</label>
+                                                    <input type="number" id="qty" class="input-text qty text" step="1" min="0" max="9" [value]="product.quantity" title="Qty" size="4"><br>
+                                                </div><br>
+                                                <br>
+                                            </td>
+                                            <td class="product-create-at" data-title="Created At">
+                                                <span class="date">{{product.createdAt |date: 'Y/d/M'}}</span>
+                                            </td>
+                                            <td class="product-updated-at" data-title="Updated At">
+                                                <span class="date">{{product.updatedAt |date: 'Y/d/M'}}</span>
+                                            </td>
+
+                                            <td class="product-update" data-title="Update">
+                                                <a href="#" class="update text-info" aria-label="Update this item" data-product_id="30" data-product_sku="">
+                                                    <i class='fa fa-save'></i>
+
+                                                </a>
+                                            </td>
+                                            <td class="product-remove" data-title="Remove">
+                                                <a href="#" class="remove" aria-label="Remove this item" data-product_id="30" data-product_sku="">
+                                                    <i class='fa fa-remove'></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </form><br>
+                        </div><br>
+                    </div>
+                    <div class="col-lg-4">
+                        <h2>user list</h2>
+                        <table class="table product_table_responsive ">
+                            <thead>
+                                <tr>
+                                    <th class="">Id</th>
+                                    <th class="">name</th>
+                                    <th class="">email</th>
+                                    <th class=""></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th data-title="user Id">1 </th>
+                                    <th data-title="name">mohammed</th>
+                                    <th data-title="email">user@gmail.com</th>
+                                    <td class="user-remove" data-title="Remove">
+                                        <a href="#" class="remove" aria-label="Remove this item" data-user-id="30" data-user_sku="">
+                                            <i class='fa fa-remove'></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- .alert-primary, .alert-secondary, .alert-success, .alert-danger, .alert-warning, .alert-info, .alert-light, .alert-dark -->
+
+    </div>

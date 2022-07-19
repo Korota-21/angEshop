@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
-import { HomeComponent } from '../home/home.component';
+import { HomeComponent } from '../components/main/home/home.component';
 
 import { RouterModule, Routes } from '@angular/router';
-import { ProductSingleComponent } from '../product-single/product-single.component';
+import { ProductSingleComponent } from '../components/product-single/product-single.component';
 
-import { CartComponent } from '../cart/cart.component';
-import { CheckoutComponent } from '../checkout/checkout.component';
-import { ShopComponent } from '../shop/shop.component';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import { LoginComponent } from '../login/login.component';
-import { RegisterComponent } from '../register/register.component';
+import { CartComponent } from '../components/cart/cart.component';
+import { CheckoutComponent } from '../components/checkout/checkout.component';
+import { ShopComponent } from '../components/shop/shop.component';
+import { DashboardComponent } from '../components/main/dashboard/dashboard.component';
+import { LoginComponent } from '../components/main/login/login.component';
+import { RegisterComponent } from '../components/main/register/register.component';
 
 import { AdminComponent } from '../admin/admin.component';
 import { AdminLoginComponent } from '../admin/admin-login/admin-login.component';
-import { MainComponent } from '../main/main.component';
+import { MainComponent } from '../components/main/main.component';
 
 const routes: Routes = [
   { path:"", component:MainComponent ,children: [
