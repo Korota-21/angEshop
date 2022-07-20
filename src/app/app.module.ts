@@ -17,6 +17,8 @@ import { RegisterComponent } from './components/main/register/register.component
 import { AdminComponent } from './admin/admin.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { MainComponent } from './components/main/main.component';
+import { FormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { MainComponent } from './components/main/main.component';
     BrowserModule,
     SlickCarouselModule,
     AppRoutingModule,
-
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

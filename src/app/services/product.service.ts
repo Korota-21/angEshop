@@ -9,17 +9,16 @@ export class ProductService {
     {
       _id: "58764",
       image: "111.jpg",
-      name: "pants",
+      name: "shirt",
       price: "11",
       quantity: 55,
       createdAt: "202005200000",
       updatedAt: "2020/05/20"
     },
     {
-      _id: "58764",
+      _id: "1234",
       image: "p-2.jpg",
-
-      name: "pants",
+      name: "hh",
       price: "22",
       quantity: 55,
       createdAt: "2020/05/20",
@@ -28,7 +27,6 @@ export class ProductService {
     {
       _id: "58764",
       image: "pants",
-
       name: "pants",
       price: "33",
       quantity: 55,

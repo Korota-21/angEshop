@@ -9,9 +9,23 @@ import { ProductService } from '../services/product.service';
 })
 export class AdminComponent implements OnInit {
   products!: IProduct[];
+  searchText!: string;
+  searchUser!: string;
+  users: any = [
+    {
+      _id: '1',
+      name: 'user',
+      email: 'user@user.com',
+    },
+    {
+      _id: '1',
+      name: 'Marwa',
+      email: 'marwa@user.com',
+    },
+  ]
   constructor(private _productService: ProductService) {
-   this.products=  this._productService.getProducts();
-   }
+    this.products = this._productService.getProducts();
+  }
 
   ngOnInit(): void {
   }

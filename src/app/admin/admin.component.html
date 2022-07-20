@@ -5,9 +5,14 @@
         <section class="cart shopping page-wrapper">
             <div class="container">
                 <button type="button" class="btn btn-primary my-1">add new product</button>
-                <h2>view product list</h2>
                 <div *ngIf="products" class="row justify-content-center">
                     <div class="col-lg-8">
+                        <h2>product list</h2>
+                        <!-- Search form -->
+                        <div class="md-form mt-0">
+                            <!-- TODO: on enter click search database -->
+                            <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="searchText">
+                        </div>
                         <div class="product-list">
                             <form class="cart-form">
                                 <table class="table product_table_responsive cart" cellspacing="0">
@@ -25,7 +30,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="cart_item" *ngFor="let product of products">
+                                        <tr class="cart_item" *ngFor="let product of products | filter:searchText">
                                             <td class="product-name" data-title="Product Id">
                                                 <a href="#">{{product._id}}</a>
                                             </td>
@@ -75,6 +80,10 @@
                     </div>
                     <div class="col-lg-4">
                         <h2>user list</h2>
+                        <!-- Search form -->
+                        <div class="md-form mt-0">
+                            <input class="form-control" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchUser">
+                        </div>
                         <table class="table product_table_responsive ">
                             <thead>
                                 <tr>
@@ -85,10 +94,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th data-title="user Id">1 </th>
-                                    <th data-title="name">mohammed</th>
-                                    <th data-title="email">user@gmail.com</th>
+                                <tr *ngFor="let user of users | filter:searchUser">
+                                    <td class="">{{user._id}}</td>
+                                    <td class="">{{user.name}}</td>
+                                    <td class="">{{user.email}}</td>
+
                                     <td class="user-remove" data-title="Remove">
                                         <a href="#" class="remove" aria-label="Remove this item" data-user-id="30" data-user_sku="">
                                             <i class='fa fa-remove'></i>
