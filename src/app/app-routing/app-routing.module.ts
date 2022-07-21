@@ -15,6 +15,7 @@ import { AdminComponent } from '../admin/admin.component';
 import { AdminLoginComponent } from '../admin/admin-login/admin-login.component';
 import { MainComponent } from '../components/main/main.component';
 import { AuthService } from '../services/auth/auth.service';
+import { AdminAuthGuard } from '../guards/admin-auth/admin-auth.guard';
 
 const routes: Routes = [
   { path:"", component:MainComponent ,children: [
@@ -29,13 +30,13 @@ const routes: Routes = [
   ]},
 
   //::ToDo: Add guard
-  { path:"admin", component:AdminComponent },
+  { path:"admin", canActivate:[AdminAuthGuard], component:AdminComponent },
   { path:"admin-login", component:AdminLoginComponent },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 
 ];
 @NgModule({
-  providers: [AuthService],
+  providers: [AuthService,AdminAuthGuard],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 
