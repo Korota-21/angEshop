@@ -6,7 +6,7 @@
 
                     <div class="col-md-8 col-lg-10 d-flex align-items-center">
                         <div class="card-body text-black">
-                            <form>
+                            <form (submit)="submitted()">
 
                                 <div class="d-flex align-items-center mb-3 pb-1">
                                     <span class="h1 fw-bold mb-0">E-Shop
@@ -14,22 +14,21 @@
                                 </div>
 
                                 <h5 class="fw-normal mb-2 pb-3 letter-spacing">Create new account</h5>
-                                <!-- <div *ngIf="err" class="alert alert-danger" role="alert">
+                                <div *ngIf="err" class="alert alert-danger" role="alert">
                                     {{errMessage}}
-                                </div> -->
-
+                                </div>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="name">name</label>
-                                    <input type="text" id="username" name="name" placeholder="name" class="form-control form-control-lg" />
+                                    <input type="text" id="username" name="name" placeholder="name" [(ngModel)]="name" class="form-control form-control-lg" />
                                 </div>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="email">Email address</label>
-                                    <input type="email" id="email" name="email" placeholder="email" class="form-control form-control-lg" />
+                                    <input type="email" id="email" name="email" placeholder="email" [(ngModel)]="email" class="form-control form-control-lg" />
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="password">Password</label>
-                                    <input type="password" id="password" name="password" placeholder="password" class="form-control form-control-lg" />
+                                    <input type="password" [(ngModel)]="password" id="password" name="password" placeholder="password" class="form-control form-control-lg" />
 
                                 </div>
                                 <div class="pt-1 mb-4">
