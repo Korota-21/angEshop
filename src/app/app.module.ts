@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthService } from './services/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { UserListComponent } from './admin/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     AdminComponent,
     AdminLoginComponent,
-    MainComponent
+    MainComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

@@ -15,15 +15,12 @@ export class AdminComponent implements OnInit {
   subscribtion!: Subscription;
 
   searchText!: string;
-  searchUser!: string;
-  users!: IUser[]
-  constructor(private _productService: ProductService,private _authService: AuthService) {
+  constructor(private _productService: ProductService) {
 
   }
 
   ngOnInit(): void {
     this.getProduct();
-    this.getUsers();
   }
   getProduct() {
     this._productService.getProductList().subscribe(
@@ -32,13 +29,7 @@ export class AdminComponent implements OnInit {
       }
     );
   }
-  getUsers() {
-    this._authService.getUserList().subscribe(
-      (users) => {
-        this.users = users;
-      }
-    );
-  }
+
   }
 
 
