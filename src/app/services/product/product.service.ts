@@ -1,41 +1,55 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IProduct } from '../../interfaces/product';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  products: IProduct[] = [
-    {
-      _id: "58764",
-      image: "111.jpg",
-      name: "shirt",
-      price: "11",
-      quantity: 55,
-      createdAt: "202005200000",
-      updatedAt: "2020/05/20"
-    },
-    {
-      _id: "1234",
-      image: "p-2.jpg",
-      name: "hh",
-      price: "22",
-      quantity: 55,
-      createdAt: "2020/05/20",
-      updatedAt: "2020/05/20"
-    },
-    {
-      _id: "58764",
-      image: "pants",
-      name: "pants",
-      price: "33",
-      quantity: 55,
-      createdAt: "2020/05/20",
-      updatedAt: "2020/05/20"
-    },
-  ];
-  constructor() { }
+  private _rootURL = "http://localhost:8000/api/product"
+  products!: IProduct[];
+  public productsChange: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>(this.products);
+
+  constructor(private _authService: AuthService, private _Http: HttpClient) { }
   getProducts(): IProduct[] {
     return this.products;
   }
+
+  private authHeader(token: string): { headers: HttpHeaders } {
+    let headers_object = new HttpHeaders({
+      'Authorization': 'Bearer ' + token,
+    })
+    let options = {
+      headers: headers_object
+    };
+    return options;
+  }
+
+  getProductList(): Observable<IProduct[]> {
+    let token = this._authService.getUserData().token;
+    return this._Http.get<IProduct[]>(`${this._rootURL}/`, this.authHeader(token));
+  }
+   updateProductList() {
+     this.getProductList().subscribe((product) => {
+      this.productsChange.next(product)
+    });
+  }
+
+  getChat(productID: string): Observable<IProduct> {
+    let token = this._authService.getUserData().token;
+    return this._Http.get<IProduct>(`${this._rootURL}/${productID}`, this.authHeader(token));
+  }
+  deleteChat(productID: string): Observable<IProduct> {
+    let token = this._authService.getUserData().token;
+    return this._Http.delete<IProduct>(`${this._rootURL}/${productID}`, this.authHeader(token));
+  }
+  createChat(email: string): Observable<IProduct> {
+    let body = { email: email };
+    let token = this._authService.getUserData().token;
+    return this._Http.post<IProduct>(`${this._rootURL}`, body, this.authHeader(token));
+  }
+
+
 }
