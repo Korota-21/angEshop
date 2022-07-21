@@ -3,5 +3,6 @@ export interface IUser {
   email: string,
   name: string,
   token: string,
+  type: string,
   cart:[]
 }
