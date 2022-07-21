@@ -13,12 +13,14 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { DashboardComponent } from './components/main/dashboard/dashboard.component';
 import { LoginComponent } from './components/main/login/login.component';
-import { RegisterComponent } from './components/main/register/register.component';
+import { RegisterComponent } from './components/register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { MainComponent } from './components/main/main.component';
 import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AuthService } from './services/auth/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,9 +44,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     SlickCarouselModule,
     AppRoutingModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

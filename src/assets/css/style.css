@@ -1710,6 +1710,11 @@ a.text-primary:hover {
     padding: 60px 30px 50px 30px;
 }
 
+.cart_item {
+    padding: 0;
+    line-height: .5rem
+}
+
 .feature-item i {
     font-size: 30px;
     float: left;

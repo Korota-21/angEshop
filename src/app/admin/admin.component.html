@@ -6,10 +6,10 @@
             <div class="container">
                 <button type="button" class="btn btn-primary my-1">add new product</button>
                 <div *ngIf="products" class="row justify-content-center">
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                         <h2>product list</h2>
                         <!-- Search form -->
-                        <div class="md-form mt-0">
+                        <div class="mt-0">
                             <!-- TODO: on enter click search database -->
                             <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="searchText">
                         </div>
@@ -38,7 +38,7 @@
                                                 <a routerLink="/product-single"><img src="assets/images/{{product.image}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""></a>
                                             </td>
                                             <td class="product-name" data-title="Product">
-                                                <a href="#">{{product.name}}</a>
+                                                <input type="text" id="qty" class="input-text qty text bg-white" step="1" min="0" max="9" value="1" title="Qty" size="4" [value]="product.name">
                                             </td>
                                             <td class="product-price" data-title="Price">
                                                 <span class="amount"><span class="currencySymbol">
@@ -78,13 +78,13 @@
                             </form><br>
                         </div><br>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <h2>user list</h2>
                         <!-- Search form -->
                         <div class="md-form mt-0">
                             <input class="form-control" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchUser">
                         </div>
-                        <table class="table product_table_responsive ">
+                        <table class="table product_table_responsive">
                             <thead>
                                 <tr>
                                     <th class="">Id</th>
