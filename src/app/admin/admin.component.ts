@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IProduct } from '../interfaces/product';
+import { IUser } from '../interfaces/user';
+import { AuthService } from '../services/auth/auth.service';
 import { ProductService } from '../services/product/product.service';
 
 @Component({
@@ -14,29 +16,26 @@ export class AdminComponent implements OnInit {
 
   searchText!: string;
   searchUser!: string;
-  users: any = [
-    {
-      _id: '1',
-      name: 'user',
-      email: 'user@user.com',
-    },
-    {
-      _id: '1',
-      name: 'Marwa',
-      email: 'marwa@user.com',
-    },
-  ]
-  constructor(private _productService: ProductService) {
-    this.products = this._productService.getProducts();
+  users!: IUser[]
+  constructor(private _productService: ProductService,private _authService: AuthService) {
+
   }
 
   ngOnInit(): void {
     this.getProduct();
+    this.getUsers();
   }
   getProduct() {
     this._productService.getProductList().subscribe(
       (products) => {
         this.products = products;
+      }
+    );
+  }
+  getUsers() {
+    this._authService.getUserList().subscribe(
+      (users) => {
+        this.users = users;
       }
     );
   }
