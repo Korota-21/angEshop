@@ -1,0 +1,73 @@
+<div *ngIf="products">
+
+    <h2>product list</h2>
+    <!-- Search form -->
+    <div class="mt-0">
+        <!-- TODO: on enter click search database -->
+        <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="searchText">
+    </div>
+    <div class="product-list">
+        <form class="cart-form">
+            <table class="table product_table_responsive cart" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="product-id">product Id</th>
+                        <th class="product-thumbnail">Image</th>
+                        <th class="product-name">name</th>
+                        <th class="product-price">Price</th>
+                        <th class="product-quantity">Quantity</th>
+                        <th class="product-create-at">Created At</th>
+                        <th class="product-updated-at">Updated At</th>
+                        <th class="product-update"> </th>
+                        <th class="product-remove"> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="cart_item" *ngFor="let product of products | filter:searchText">
+                        <td class="product-name" data-title="Product Id">
+                            <a href="#">{{product._id}}</a>
+                        </td>
+                        <td class="product-thumbnail" data-title="Thumbnail">
+                            <a routerLink="/product-single"><img src="http://localhost:8000/uploads/product/{{product.image}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""></a>
+                        </td>
+                        <td class="product-name" data-title="Product">
+                            <input type="text" style="width: 200px;" class="input-text qty text bg-white" title="name" size="4" [value]="product.name">
+                        </td>
+                        <td class="product-price" data-title="Price">
+                            <span class="amount"><span class="currencySymbol">
+                              &#36;</span> <input type="number" id="qty" class="input-text qty text" step="1" min="0" max="9" value="1" title="Qty" size="4" [value]="product.price"><br>
+                            </span>
+                        </td>
+
+                        <td class="product-quantity" data-title="Quantity"><br>
+                            <div class="quantity"><br>
+                                <label class="sr-only">Quantity</label>
+                                <input type="number" id="qty" class="input-text qty text" step="1" min="0" max="9" [value]="product.quantity" title="Qty" size="4"><br>
+                            </div><br>
+                            <br>
+                        </td>
+                        <td class="product-create-at" data-title="Created At">
+                            <span class="date">{{product.createdAt |date: 'Y/d/M'}}</span>
+                        </td>
+                        <td class="product-updated-at" data-title="Updated At">
+                            <span class="date">{{product.updatedAt |date: 'Y/d/M'}}</span>
+                        </td>
+
+                        <td class="product-update" data-title="Update">
+                            <a href="#" class="update text-info" aria-label="Update this item" data-product_id="30" data-product_sku="">
+                                <i class='fa fa-save'></i>
+
+                            </a>
+                        </td>
+                        <td class="product-remove" data-title="Remove">
+                            <a href="#" class="remove" aria-label="Remove this item" data-product_id="30" data-product_sku="">
+                                <i class='fa fa-remove'></i>
+                            </a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </form><br>
+    </div><br>
+</div>

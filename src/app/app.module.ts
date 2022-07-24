@@ -17,11 +17,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { MainComponent } from './components/main/main.component';
-import { FormsModule } from '@angular/forms';
+import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthService } from './services/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UserListComponent } from './admin/user-list/user-list.component';
+import { ProductListComponent } from './admin/product-list/product-list.component';
+import { CreateProductComponent } from './admin/create-product/create-product.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { UserListComponent } from './admin/user-list/user-list.component';
     AdminComponent,
     AdminLoginComponent,
     MainComponent,
-    UserListComponent
+    UserListComponent,
+    ProductListComponent,
+    CreateProductComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,8 @@ import { UserListComponent } from './admin/user-list/user-list.component';
     AppRoutingModule,
     FormsModule,
     Ng2SearchPipeModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

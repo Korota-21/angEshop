@@ -1,0 +1,90 @@
+<!-- Modal -->
+<div class="modal fade" id="addProductModel" tabindex="-1" role="dialog" aria-labelledby="addProductModelTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProductModelTitle">Create product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>  </button>
+            </div>
+            <div class="modal-body">
+                <form #Product="ngForm" (ngSubmit)="submit(Product)">
+
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose image</label>
+
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="name">Product name</label>
+                        <input type="text" #name="ngModel" [(ngModel)]="Product.name" class="form-control bg-white" id="name" placeholder="name" ngModel>
+                        <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+                            <p *ngIf="name.errors!.required">FirstName Required!!</p>
+                            <p *ngIf="name.errors!.minlength">Sorry! Short FirstName</p>
+                        </div>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="description">Product description</label>
+                        <input type="text" class="form-control bg-white" id="description" placeholder="description">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="price">Product price</label>
+                        <input type="text" class="form-control bg-white" id="price">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="quantity">Product quantity</label>
+                        <input type="number" class="form-control bg-white" id="quantity">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="color">Product color</label>
+                        <div class="">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="blue">
+                                <label class="form-check-label" for="blue">blue</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="red">
+                                <label class="form-check-label" for="red">red</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="black">
+                                <label class="form-check-label" for="black">black</label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="tags">Product tags</label>
+                        <div class="">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="women">
+                                <label class="form-check-label" for="women">women</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">men</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="children">
+                                <label class="form-check-label" for="children">children</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="top">
+                                <label class="form-check-label" for="top">top</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-2">
+                        <div class="form-check">
+                            <input class="form-check-input" checked type="checkbox" id="availability">
+                            <label class="form-check-label" for="availability">make it available now?</label>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" type="submit">add product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
