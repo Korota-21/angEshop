@@ -41,6 +41,10 @@ export class ProductService {
     let token = this._authService.getUserData().token;
     return this._Http.get<IProduct>(`${this._rootURL}/${productID}`, this.authHeader(token));
   }
+  updateProduct(product: IProduct): Observable<IProduct> {
+    let token = this._authService.getUserData().token;
+    return this._Http.patch<IProduct>(`${this._rootURL}/${product._id}`, product,this.authHeader(token));
+  }
   deleteProduct(productID: string): Observable<IProduct> {
     let token = this._authService.getUserData().token;
     return this._Http.delete<IProduct>(`${this._rootURL}/${productID}`, this.authHeader(token));

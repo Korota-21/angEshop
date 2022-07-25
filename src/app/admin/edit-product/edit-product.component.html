@@ -1,0 +1,61 @@
+<!-- Modal -->
+<div *ngIf="product" class="product-view overflow-auto">
+    <div class="modal-header">
+        <h5 class="modal-title" id="addProductModelTitle">update product</h5>
+    </div>
+    <div class="modal-body">
+        <div class="w-100 d-flex justify-content-center">
+            <a routerLink="/product-single"><img src="http://localhost:8000/uploads/product/{{product.image}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" style="width:120px;" alt=""></a>
+        </div>
+        <form [formGroup]="productForm" (ngSubmit)="submit()">
+
+            <div class="form-group mt-2">
+                <label for="name">Product name</label>
+                <input type="text" formControlName="name" value="{{product.name}}" class="form-control bg-white" id="name">
+
+            </div>
+            <div class="form-group mt-2">
+                <label for="description">Product description</label>
+                <input type="text" class="form-control bg-white" formControlName="description" id="description" placeholder="description" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }">
+            </div>
+            <div class="form-group mt-2">
+                <label for="price">Product price</label>
+                <input type="text" formControlName="price" class="form-control bg-white" id="price" [ngClass]="{ 'is-invalid': submitted && f['price'].errors }">
+            </div>
+            <div class="form-group mt-2">
+                <label for="quantity">Product quantity</label>
+                <input type="number" formControlName="quantity" class="form-control bg-white" id="quantity" [ngClass]="{ 'is-invalid': submitted && f['quantity'].errors }">
+            </div>
+            <div class="form-group mt-2">
+                <label for="color">Product color</label>
+                <div class="" *ngFor="let color of colors">
+                    <div class="form-check">
+                        <input class="form-check-input" [checked]="product.colors.includes(color)" name="color" (change)="onChangeColor(color, $event.target)" type="checkbox" #checkboxes>
+                        <label class="form-check-label" for="color">{{color}}</label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <label for="tags">Product tags</label>
+                <div *ngFor="let tag of tags">
+                    <div class="form-check">
+                        <input class="form-check-input" [checked]="product.tags.includes(tag)" type="checkbox" (change)="onChangeTag(tag,$event.target)" id="women">
+                        <label class="form-check-label" for="women">{{tag}}</label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <div class="form-check">
+                    <input class="form-check-input" [checked]="product.availability" formControlName="availability" type="checkbox" id="availability">
+                    <label class="form-check-label" for="availability">make it available now?</label>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" type="submit">save</button>
+            </div>
+        </form>
+    </div>
+</div>

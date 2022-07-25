@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IProduct } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product/product.service';
 
@@ -21,12 +21,7 @@ export class CreateProductComponent implements OnInit {
   });
   file: File | null = null; // Variable to store file
 
-  colors = [
-    'red',
-    'blue',
-    'black',
-    'yellow',
-  ]
+  colors = ['red', 'blue', 'black', 'yellow']
   tags = ["top", "bottom", "children", "men", "women"]
   productColors: string[] = [];
   productTags: string[] = [];
@@ -34,15 +29,10 @@ export class CreateProductComponent implements OnInit {
   onChange(event: any) {
     if (event.target.files[0].type.includes("image"))
       this.file = event.target.files[0];
-
-    console.log(this.file);
-
   }
   constructor(private formBuilder: FormBuilder, private _productService: ProductService,) {
   }
 
-
-  colorsForm!: FormGroup;
   ngOnInit(): void {
 
     this.productForm = this.formBuilder.group({
@@ -50,7 +40,7 @@ export class CreateProductComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', Validators.required],
-      colors: [],
+      // colors: [],
       tags: [],
       quantity: [0, Validators.required],
       availability: [true,],
