@@ -17,8 +17,6 @@
                         <th class="product-price">Price</th>
                         <th class="product-quantity">Quantity</th>
                         <th class="product-create-at">Created At</th>
-                        <th class="product-updated-at">Updated At</th>
-                        <th class="product-update"> </th>
                         <th class="product-remove"> </th>
                     </tr>
                 </thead>
@@ -46,22 +44,13 @@
                             <br>
                         </td>
                         <td class="product-create-at" data-title="Created At">
-                            <span class="date">{{product.createdAt |date: 'h:mm:ss a'}}</span>
-                        </td>
-                        <td class="product-updated-at" data-title="Updated At">
-                            <span class="date">{{product.updatedAt |date: 'yy/M/d'}}</span>
+                            <span class="date">{{product.createdAt |date: 'yy/M/d'}}</span>
                         </td>
 
-                        <td class="product-update" data-title="Update">
-                            <a href="#" class="update text-info" aria-label="Update this item" data-product_id="30" data-product_sku="">
-                                <i class='fa fa-save'></i>
-
-                            </a>
-                        </td>
                         <td class="product-remove" data-title="Remove">
-                            <a href="#" class="remove" aria-label="Remove this item" data-product_id="30" data-product_sku="">
+                            <div class="remove text-danger" aria-label="Remove this item" (click)="deleteProduct(product._id)" data-product_id="30" data-product_sku="">
                                 <i class='fa fa-remove'></i>
-                            </a>
+                            </div>
                         </td>
                     </tr>
 

@@ -8,7 +8,7 @@ import { ProductService } from 'src/app/services/product/product.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit ,OnDestroy{
+export class ProductListComponent implements OnInit, OnDestroy {
   products!: IProduct[];
   subscribtion!: Subscription;
   searchText!: string;
@@ -22,12 +22,22 @@ export class ProductListComponent implements OnInit ,OnDestroy{
     })
   }
   getProduct() {
-      this._productService.getProductList().subscribe(
+    this._productService.getProductList().subscribe(
       (products) => {
         this.products = products;
       }
     );
   }
+  deleteProduct(productsId: string) {
+    if (confirm('Are you sure you want to delete this product?'))
+      this._productService.deleteProduct(productsId).subscribe(
+        () => {
+          this._productService.updateProductList();
+        }
+      );
+
+    }
+
   ngOnDestroy(): void {
     this.subscribtion.unsubscribe();
   }
