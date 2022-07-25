@@ -1,16 +1,20 @@
-<div class="row">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-    <app-create-product>
-    </app-create-product>
-    <div class="col">
-        <section class="cart shopping pt-5">
-            <div class="container card">
-                <button type="button" class="btn btn-info my-1 text" data-toggle="modal" data-target="#addProductModel">add new product</button>
+<div class="container card text-dark py-2 my-2 px-3">
+    <div class="row">
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 
-                <app-product-list></app-product-list>
-                <app-user-list></app-user-list>
+        <app-create-product>
+        </app-create-product>
+        <div class="col-md-4 align-items-center">
+            <button type="button" class="btn btn-info  col-md-12 " data-toggle="modal" data-target="#addProductModel">add new product</button>
+            <app-product-list></app-product-list>
 
-            </div>
-        </section>
+        </div>
+        <div class="col-md-8">
+            <router-outlet></router-outlet>
+        </div>
+        <app-user-list></app-user-list>
+
     </div>
+
+
 </div>

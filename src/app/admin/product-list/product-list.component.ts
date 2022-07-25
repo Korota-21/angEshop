@@ -28,15 +28,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
       }
     );
   }
-  deleteProduct(productsId: string) {
-    if (confirm('Are you sure you want to delete this product?'))
-      this._productService.deleteProduct(productsId).subscribe(
-        () => {
-          this._productService.updateProductList();
-        }
-      );
-
-    }
 
   ngOnDestroy(): void {
     this.subscribtion.unsubscribe();

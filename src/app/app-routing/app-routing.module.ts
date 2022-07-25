@@ -16,27 +16,38 @@ import { AdminLoginComponent } from '../admin/admin-login/admin-login.component'
 import { MainComponent } from '../components/main/main.component';
 import { AuthService } from '../services/auth/auth.service';
 import { AdminAuthGuard } from '../guards/admin-auth/admin-auth.guard';
+import { ViewProductAdminComponent } from '../admin/view-product-admin/view-product-admin.component';
+import { EditProductComponent } from '../admin/edit-product/edit-product.component';
 
 const routes: Routes = [
-  { path:"", component:MainComponent ,children: [
-    { path:"", component:HomeComponent },
-  { path:"product-single", component:ProductSingleComponent },
-  { path:"cart", component:CartComponent },
-  { path:"checkout", component:CheckoutComponent },
-  { path:"shop", component:ShopComponent },
-  { path:"dashboard", component:DashboardComponent },
-  { path:"login", component:LoginComponent},
-  { path:"register", component:RegisterComponent},
-  ]},
+  {
+    path: "", component: MainComponent, children: [
+      { path: "", component: HomeComponent },
+      { path: "product-single", component: ProductSingleComponent },
+      { path: "cart", component: CartComponent },
+      { path: "checkout", component: CheckoutComponent },
+      { path: "shop", component: ShopComponent },
+      { path: "dashboard", component: DashboardComponent },
+      { path: "login", component: LoginComponent },
+      { path: "register", component: RegisterComponent },
+    ]
+  },
 
-  //::ToDo: Add guard
-  { path:"admin", canActivate:[AdminAuthGuard], component:AdminComponent },
-  { path:"admin-login", component:AdminLoginComponent },
-  { path: '**', redirectTo: '/', pathMatch: 'full' },
+  // admin routes
+  {
+    path: "admin", canActivate: [AdminAuthGuard], component: AdminComponent, children: [
+      { path: ':id', component: ViewProductAdminComponent },
+      { path: 'update/:id', component:EditProductComponent }
+
+    ]
+  },
+  { path: "admin-login", component: AdminLoginComponent },
+
+  // { path: '**', redirectTo: '/', pathMatch: 'full' },
 
 ];
 @NgModule({
-  providers: [AuthService,AdminAuthGuard],
+  providers: [AuthService, AdminAuthGuard],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 

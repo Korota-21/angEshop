@@ -6,52 +6,50 @@
         <!-- TODO: on enter click search database -->
         <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="searchText">
     </div>
-    <div class="product-list">
-        <form class="cart-form">
-            <table class="table product_table_responsive cart" cellspacing="0">
-                <thead>
+    <div id="table-wrapper">
+        <form id="table-scroll">
+            <table class="table table-striped overflow-auto" cellspacing="0">
+                <thead class="thead-dark">
                     <tr>
-                        <th class="product-id">product Id</th>
-                        <th class="product-thumbnail">Image</th>
+                        <!-- <th class="product-id">product Id</th>
+                        <th class="product-thumbnail">Image</th> -->
                         <th class="product-name">name</th>
                         <th class="product-price">Price</th>
                         <th class="product-quantity">Quantity</th>
-                        <th class="product-create-at">Created At</th>
-                        <th class="product-remove"> </th>
+                        <!-- <th class="product-create-at">Created At</th>
+                        <th class="product-remove"> </th> -->
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="cart_item" *ngFor="let product of products | filter:searchText">
-                        <td class="product-name" data-title="Product Id">
-                            <a href="#">{{product._id}}</a>
-                        </td>
-                        <td class="product-thumbnail" data-title="Thumbnail">
+
+                        <!-- <td class="product-thumbnail" data-title="Thumbnail">
                             <a routerLink="/product-single"><img src="http://localhost:8000/uploads/product/{{product.image}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""></a>
-                        </td>
+                        </td> -->
                         <td class="product-name" data-title="Product">
-                            {{product.name}} </td>
+                            <a routerLink='./{{product._id}}'>{{product.name}} </a></td>
                         <td class="product-price" data-title="Price">
                             <span class="amount"><span class="currencySymbol">
-                              &#36;</span> {{product.price}}<br>
+                              &#36; {{product.price}}</span>
                             </span>
                         </td>
 
-                        <td class="product-quantity" data-title="Quantity"><br>
-                            <div class="quantity"><br>
+                        <td class="product-quantity" data-title="Quantity">
+                            <div class="quantity">
                                 <label class="sr-only">Quantity</label> {{product.quantity}}
-                                <br>
-                            </div><br>
-                            <br>
-                        </td>
-                        <td class="product-create-at" data-title="Created At">
-                            <span class="date">{{product.createdAt |date: 'yy/M/d'}}</span>
-                        </td>
 
-                        <td class="product-remove" data-title="Remove">
+                            </div>
+
+                        </td>
+                        <!-- <td class="product-create-at" data-title="Created At">
+                            <span class="date">{{product.createdAt |date: 'yy/M/d'}}</span>
+                        </td> -->
+
+                        <!-- <td class="product-remove" data-title="Remove">
                             <div class="remove text-danger" aria-label="Remove this item" (click)="deleteProduct(product._id)" data-product_id="30" data-product_sku="">
                                 <i class='fa fa-remove'></i>
                             </div>
-                        </td>
+                        </td> -->
                     </tr>
 
                 </tbody>
