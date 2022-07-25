@@ -43,13 +43,13 @@ export class ProductService {
   }
   updateProduct(product: IProduct): Observable<IProduct> {
     let token = this._authService.getUserData().token;
-    return this._Http.patch<IProduct>(`${this._rootURL}/${product._id}`, product,this.authHeader(token));
+    return this._Http.patch<IProduct>(`${this._rootURL}/${product._id}`, product, this.authHeader(token));
   }
   deleteProduct(productID: string): Observable<IProduct> {
     let token = this._authService.getUserData().token;
     return this._Http.delete<IProduct>(`${this._rootURL}/${productID}`, this.authHeader(token));
   }
-  createProduct(product: IProduct,image:File): Observable<IProduct> {
+  createProduct(product: IProduct, image: File): Observable<IProduct> {
     // let body = { email: email };
     const formData = new FormData();
     console.log(product);
@@ -58,9 +58,15 @@ export class ProductService {
     formData.append("description", product.description);
     formData.append("price", product.price);
     formData.append("quantity", product.quantity.toString());
-    formData.append("colors", product.colors.toString());
-    formData.append("tags", product.tags.toString());
+
+    for (var i = 0; i < product.colors.length; i++) {
+      formData.append('colors', product.colors[i]);
+    }
+    for (var i = 0; i < product.tags.length; i++) {
+      formData.append('tags', product.tags[i]);
+    }
     formData.append("availability", product.availability.toString());
+console.log(formData);
 
     let token = this._authService.getUserData().token;
     return this._Http.post<IProduct>(`${this._rootURL}`, formData, this.authHeader(token));
