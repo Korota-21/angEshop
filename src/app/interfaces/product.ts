@@ -5,8 +5,8 @@ export interface IProduct {
   description:string;
   price:string;
   quantity:number;
-  colors:[string];
-  tags:[string];
+  colors:string[];
+  tags:string[];
   availability:boolean;
   createdAt:string;
   updatedAt:string;

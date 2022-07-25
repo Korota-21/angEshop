@@ -31,24 +31,35 @@ export class ProductService {
     let token = this._authService.getUserData().token;
     return this._Http.get<IProduct[]>(`${this._rootURL}/`, this.authHeader(token));
   }
-   updateProductList() {
-     this.getProductList().subscribe((product) => {
+  updateProductList() {
+    this.getProductList().subscribe((product) => {
       this.productsChange.next(product)
     });
   }
 
-  getChat(productID: string): Observable<IProduct> {
+  getProduct(productID: string): Observable<IProduct> {
     let token = this._authService.getUserData().token;
     return this._Http.get<IProduct>(`${this._rootURL}/${productID}`, this.authHeader(token));
   }
-  deleteChat(productID: string): Observable<IProduct> {
+  deleteProduct(productID: string): Observable<IProduct> {
     let token = this._authService.getUserData().token;
     return this._Http.delete<IProduct>(`${this._rootURL}/${productID}`, this.authHeader(token));
   }
-  createChat(email: string): Observable<IProduct> {
-    let body = { email: email };
+  createProduct(product: IProduct,image:File): Observable<IProduct> {
+    // let body = { email: email };
+    const formData = new FormData();
+    console.log(product);
+    formData.append("image", image);
+    formData.append("name", product.name);
+    formData.append("description", product.description);
+    formData.append("price", product.price);
+    formData.append("quantity", product.quantity.toString());
+    formData.append("colors", product.colors.toString());
+    formData.append("tags", product.tags.toString());
+    formData.append("availability", product.availability.toString());
+
     let token = this._authService.getUserData().token;
-    return this._Http.post<IProduct>(`${this._rootURL}`, body, this.authHeader(token));
+    return this._Http.post<IProduct>(`${this._rootURL}`, formData, this.authHeader(token));
   }
 
 

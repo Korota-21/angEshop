@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IProduct } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product/product.service';
@@ -8,7 +8,7 @@ import { ProductService } from 'src/app/services/product/product.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit ,OnDestroy{
   products!: IProduct[];
   subscribtion!: Subscription;
   searchText!: string;
@@ -17,13 +17,19 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProduct();
-
+    this.subscribtion = this._productService.productsChange.subscribe((prodocts: IProduct[]) => {
+      this.products = prodocts;
+    })
   }
   getProduct() {
-    this._productService.getProductList().subscribe(
+      this._productService.getProductList().subscribe(
       (products) => {
         this.products = products;
       }
     );
   }
+  ngOnDestroy(): void {
+    this.subscribtion.unsubscribe();
+  }
+
 }
