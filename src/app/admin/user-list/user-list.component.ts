@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { IUser } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -12,10 +13,12 @@ export class UserListComponent implements OnInit {
   constructor(private _authService: AuthService) { }
   searchUser!: string;
   users!: IUser[]
-
+  subscribtion!: Subscription;
   ngOnInit(): void {
     this.getUsers();
-
+    this.subscribtion = this._authService.usersChange.subscribe((users:IUser[]) => {
+      this.users = users;
+    })
   }
   getUsers() {
     this._authService.getUserList().subscribe(
@@ -23,5 +26,14 @@ export class UserListComponent implements OnInit {
         this.users = users;
       }
     );
+  }
+  deleteProduct(userId: string) {
+    if (confirm('Are you sure you want to delete this user?'))
+      this._authService.deleteUser(userId).subscribe(
+        () => {
+          this._authService.updateUsersList();
+
+        }
+      );
   }
 }

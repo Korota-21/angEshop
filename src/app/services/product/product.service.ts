@@ -66,7 +66,6 @@ export class ProductService {
       formData.append('tags', product.tags[i]);
     }
     formData.append("availability", product.availability.toString());
-console.log(formData);
 
     let token = this._authService.getUserData().token;
     return this._Http.post<IProduct>(`${this._rootURL}`, formData, this.authHeader(token));
