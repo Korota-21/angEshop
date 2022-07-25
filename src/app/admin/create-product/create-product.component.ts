@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IProduct } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product/product.service';
@@ -10,6 +10,8 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./create-product.component.css']
 })
 export class CreateProductComponent implements OnInit {
+  @ViewChildren("checkboxes") checkboxes!: QueryList<ElementRef>;
+
   productForm = new FormGroup({
     name: new FormControl(''),
     description: new FormControl(''),
@@ -17,7 +19,7 @@ export class CreateProductComponent implements OnInit {
     quantity: new FormControl(Number),
     availability: new FormControl(true),
   });
-  file: File|null = null; // Variable to store file
+  file: File | null = null; // Variable to store file
 
   colors = [
     'red',
@@ -29,13 +31,13 @@ export class CreateProductComponent implements OnInit {
   productColors: string[] = [];
   productTags: string[] = [];
   submitted = false;
-  onChange(event:any) {
+  onChange(event: any) {
     if (event.target.files[0].type.includes("image"))
-    this.file = event.target.files[0];
+      this.file = event.target.files[0];
 
-console.log(this.file);
+    console.log(this.file);
 
-}
+  }
   constructor(private formBuilder: FormBuilder, private _productService: ProductService,) {
   }
 
@@ -44,12 +46,14 @@ console.log(this.file);
   ngOnInit(): void {
 
     this.productForm = this.formBuilder.group({
-      image:[File, Validators.required],
+      image: [File, Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', Validators.required],
+      colors: [],
+      tags: [],
       quantity: [0, Validators.required],
-      availability: [true, ],
+      availability: [true,],
     })
   }
   get f(): { [key: string]: AbstractControl } {
@@ -79,19 +83,27 @@ console.log(this.file);
     {
       name: this.productForm.controls.name.value,
       description: this.productForm.controls.description.value,
-      price:this.productForm.controls.price.value,
+      price: this.productForm.controls.price.value,
       quantity: this.productForm.controls.quantity.value,
       colors: this.productColors,
       tags: this.productTags,
-      availability:  this.productForm.controls.availability.value,
+      availability: this.productForm.controls.availability.value,
     }
-    console.log(product)
     this.createProduct(product);
   }
-  createProduct(product:any): void {
-    this._productService.createProduct(product,this.file!).subscribe(
-      product => console.log("Product created", product),
-      err => console.log("Error creating", err));
-      ()=>this._productService.updateProductList()
+  createProduct(product: any): void {
+    this._productService.createProduct(product, this.file!).subscribe(
+      product => { this._productService.updateProductList() },
+      err => console.log("Error creating", err))
+  }
+
+  reset() {
+    this.productForm.reset();
+    this.productForm.markAsPristine();
+    this.productForm.markAsUntouched();
+    this.productForm.updateValueAndValidity();
+    this.checkboxes.forEach((element) => {
+      element.nativeElement.checked = false;
+    });
   }
 }

@@ -35,7 +35,7 @@
                         <label for="color">Product color</label>
                         <div class="" *ngFor="let color of colors">
                             <div class="form-check">
-                                <input class="form-check-input" value="blue" name="color" (change)="onChangeColor(color, $event.target)" type="checkbox">
+                                <input class="form-check-input" value="blue" name="color" (change)="onChangeColor(color, $event.target)" type="checkbox" #checkboxes>
                                 <label class="form-check-label" for="blue">{{color}}</label>
                             </div>
 
@@ -59,6 +59,7 @@
                     </div>
 
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" (click)="reset()">Clear</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" type="submit">add product</button>
                     </div>
@@ -66,3 +67,4 @@
             </div>
         </div>
     </div>
+</div>
