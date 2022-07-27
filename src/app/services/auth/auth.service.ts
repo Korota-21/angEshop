@@ -27,7 +27,10 @@ export class AuthService {
   }
   authUser(): Observable<IUser> {
     return this._Http.get<IUser>(`${this._rootURL}/me`, this.authHeader(this.getUserData().token));
-
+  }
+  isUserLoggedIn(): boolean {
+    //TODO: Enhance this methid with jwt
+    return !!localStorage.getItem(AppUtil.AUTH_TOKEN);
   }
   getUserList(): Observable<IUser[]> {
     return this._Http.get<IUser[]>(`${this._rootURL}`, this.authHeader(this.getUserData().token));
