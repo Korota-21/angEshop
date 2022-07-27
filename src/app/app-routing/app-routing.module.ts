@@ -23,7 +23,7 @@ const routes: Routes = [
   {
     path: "", component: MainComponent, children: [
       { path: "", component: HomeComponent },
-      { path: "product-single", component: ProductSingleComponent },
+      { path: "product-single/:id", component: ProductSingleComponent },
       { path: "cart", component: CartComponent },
       { path: "checkout", component: CheckoutComponent },
       { path: "shop", component: ShopComponent },
@@ -43,7 +43,7 @@ const routes: Routes = [
   },
   { path: "admin-login", component: AdminLoginComponent },
 
-  // { path: '**', redirectTo: '/', pathMatch: 'full' },
+  { path: '**', redirectTo: '/', pathMatch: 'full' },
 
 ];
 @NgModule({

@@ -136,20 +136,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5">
+                    <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let product of products">
                         <div class="product">
                             <div class="product-wrap">
-                                <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/322.jpg" alt="product-img" /></a>
-                                <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/222.jpg" alt="product-img" /></a>
+
+                                <a routerLink="/product-single/{{product._id}}"><img class="img-fluid w-100 mb-3" src="http://localhost:8000/uploads/product/{{product.image}}" alt="product-img" /></a>
                             </div>
-                            <div class="product-hover-overlay">
-                                <a href="#"><i class="tf-ion-android-cart"></i></a>
-                                <a href="#"><i class="tf-ion-ios-heart"></i></a>
-                            </div>
+
                             <div class="product-info">
-                                <h2 class="product-title h5 mb-0"><a routerLink="/product-single">Stylish dress</a></h2>
-                                <span class="price"> $99.00
-        </span>
+                                <h2 class="product-title h5 mb-0"><a routerLink="/product-single/{{product._id}}">{{product.name}}</a></h2>
+                                <span class="price">
+                          ${{product.price}} </span>
                             </div>
                         </div>
                     </div>
@@ -193,7 +190,7 @@
                             </li>
                             <li class="list-inline-item mr-4">
                                 <div class="custom-control custom-checkbox color-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="color2" checked>
+                                    <input type="checkbox" class="custom-control-input" id="color2">
                                     <label class="custom-control-label red" for="color2"></label>
                                 </div>
                             </li>

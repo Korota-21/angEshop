@@ -1491,7 +1491,7 @@ a.text-primary:hover {
 
 .custom-control-label.red::before,
 .custom-control-input:checked~.custom-control-label.red::before {
-    background-color: #ff5c5c;
+    background-color: #fe3f3f;
 }
 
 .custom-control-label.dark::before,
