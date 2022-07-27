@@ -11,7 +11,8 @@ export class ProductService {
   private _rootURL = "http://localhost:8000/api/product"
   products!: IProduct[];
   public productsChange: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>(this.products);
-
+  public colorsList = ['red', 'blue', 'black', 'yellow'];
+  public tagsList = ["top", "bottom", "children", "men", "women"];
   constructor(private _authService: AuthService, private _Http: HttpClient) { }
   getProducts(): IProduct[] {
     return this.products;
@@ -27,9 +28,14 @@ export class ProductService {
     return options;
   }
 
-  getProductList(): Observable<IProduct[]> {
+  getProductList(pagination?: number, page?: number, availability?: boolean, colors?: string[], tags?: string[]): Observable<IProduct[]> {
     let token = this._authService.getUserData().token;
-    return this._Http.get<IProduct[]>(`${this._rootURL}/`, this.authHeader(token));
+    let queryString = (pagination ? `pagination=${pagination}&` : '')
+      + (page ? `page=${page}&` : '')
+      + ((availability != undefined)  ? `availability=${availability}&` : '')
+      + (tags ? `tags=${tags}&` : '') +
+      (colors ? `colors=${colors}&` : '')
+    return this._Http.get<IProduct[]>(`${this._rootURL}?${queryString}`, this.authHeader(token));
   }
   updateProductList() {
     this.getProductList().subscribe((product) => {
@@ -73,3 +79,4 @@ export class ProductService {
 
 
 }
+

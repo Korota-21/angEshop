@@ -21,8 +21,8 @@ export class CreateProductComponent implements OnInit {
   });
   file: File | null = null; // Variable to store file
 
-  colors = ['red', 'blue', 'black', 'yellow']
-  tags = ["top", "bottom", "children", "men", "women"]
+  colors = this._productService.colorsList;
+  tags = this._productService.tagsList;
   productColors: string[] = [];
   productTags: string[] = [];
   submitted = false;

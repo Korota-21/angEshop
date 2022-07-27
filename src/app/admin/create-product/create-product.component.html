@@ -35,8 +35,8 @@
                         <label for="color">Product color</label>
                         <div class="" *ngFor="let color of colors">
                             <div class="form-check">
-                                <input class="form-check-input" value="blue" name="color" (change)="onChangeColor(color, $event.target)" type="checkbox" #checkboxes>
-                                <label class="form-check-label" for="blue">{{color}}</label>
+                                <input class="form-check-input" name="color" (change)="onChangeColor(color, $event.target)" type="checkbox" #checkboxes>
+                                <label class="form-check-label" for="color">{{color}}</label>
                             </div>
 
                         </div>
@@ -45,8 +45,8 @@
                         <label for="tags">Product tags</label>
                         <div *ngFor="let tag of tags">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" (change)="onChangeTag(tag,$event.target)" id="women">
-                                <label class="form-check-label" for="women">{{tag}}</label>
+                                <input class="form-check-input" name="tag" type="checkbox" (change)="onChangeTag(tag,$event.target)" #checkboxes>
+                                <label class="form-check-label" for="tag">{{tag}}</label>
                             </div>
 
                         </div>

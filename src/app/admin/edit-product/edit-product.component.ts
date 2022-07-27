@@ -19,8 +19,8 @@ export class EditProductComponent implements OnInit {
     quantity: new FormControl(Number),
     availability: new FormControl(true),
   });
-  colors = ['red', 'blue', 'black', 'yellow']
-  tags = ["top", "bottom", "children", "men", "women"]
+  colors = this._productService.colorsList;
+  tags = this._productService.tagsList;
   submitted = false;
 
   constructor(private formBuilder: FormBuilder, private _activateRoute: ActivatedRoute,
