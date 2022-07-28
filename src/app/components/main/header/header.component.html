@@ -18,9 +18,8 @@
                     <a class="nav-link dropdown-toggle" routerLink="/shop" href="#" id="navbarDropdown5" role="button" data-delay="350" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Shop</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown5">
-                        <li><a routerLink="/shop">women</a></li>
-                        <li><a href="#">men</a></li>
-                        <li><a href="#">children</a></li>
+                        <li><a routerLink="/shop" *ngFor="let tag of productService.tagsList" [queryParams]="{ tags: tag}">{{tag}}</a></li>
+
                     </ul>
                     <!-- / Shop -->
 
@@ -32,9 +31,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown5">
                             <li><a routerLink="/dashboard">Dahsboard</a></li>
                             <li><a href="#">Orders</a></li>
-                            <!-- <li><a href="#">Address</a></li> -->
                             <li><a href="#">Profile Details</a></li>
-                            <li><a routerLink="/register">SignUp Page</a></li>
                             <li><a (click)="logout()">Logout</a></li>
                         </ul>
                     </li>
