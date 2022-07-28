@@ -28,18 +28,18 @@ export class ProductService {
     return options;
   }
 
-  getProductList(pagination?: number, page?: number, availability?: boolean, colors?: string[], tags?: string[]): Observable<IProduct[]> {
+  getProductList(pagination?: number, page?: number, availability?: boolean, colors?: string[], tags?: string[]): Observable<{products:IProduct[],count:number}> {
     let token = this._authService.getUserData().token;
     let queryString = (pagination ? `pagination=${pagination}&` : '')
       + (page ? `page=${page}&` : '')
       + ((availability != undefined)  ? `availability=${availability}&` : '')
       + (tags ? `tags=${tags}&` : '') +
       (colors ? `colors=${colors}&` : '')
-    return this._Http.get<IProduct[]>(`${this._rootURL}?${queryString}`, this.authHeader(token));
+    return this._Http.get<{products:IProduct[],count:number}>(`${this._rootURL}?${queryString}`, this.authHeader(token));
   }
   updateProductList() {
-    this.getProductList().subscribe((product) => {
-      this.productsChange.next(product)
+    this.getProductList().subscribe((res) => {
+      this.productsChange.next(res.products);
     });
   }
 

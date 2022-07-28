@@ -23,8 +23,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
   getProduct() {
     this._productService.getProductList().subscribe(
-      (products) => {
-        this.products = products;
+      (res) => {
+        this.products = res.products;
       }
     );
   }
