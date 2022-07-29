@@ -19,7 +19,9 @@ export class WishListComponent implements OnInit {
   getWishList() {
     this._wishListService.getWishList().subscribe(
       (res) => {
-        this.wishList = res.products;
+        console.log(res);
+
+        this.wishList = res;
       }
     );
   }

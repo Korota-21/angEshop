@@ -56,6 +56,11 @@
                             <a *ngFor="let color of product.colors" href="#">{{color}} , </a>
                             <a *ngFor="let tag of product.tags" href="#">{{tag}} , </a>
                         </div>
+
+                        <b (click)="addToWishList()" class="text-primary">Add to wish list</b>
+
+
+
                         <div class="product-share mt-5">
                             <ul class="list-inline">
                                 <li class="list-inline-item">

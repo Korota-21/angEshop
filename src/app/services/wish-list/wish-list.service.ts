@@ -24,22 +24,22 @@ export class WishListService {
     return options;
   }
 
-  getWishList(): Observable<{products:IProduct[],count:number}> {
+  getWishList(): Observable<IProduct[]> {
     let token = this._authService.getUserData().token;
-    return this._Http.get<{products:IProduct[],count:number}>(`${this._rootURL}`, this.authHeader(token));
+    return this._Http.get<IProduct[]>(`${this._rootURL}`, this.authHeader(token));
   }
   updateProductList() {
-    this.getWishList().subscribe((res) => {
-      this.productsChange.next(res.products);
+    this.getWishList().subscribe((products) => {
+      this.productsChange.next(products);
     });
   }
   deleteProduct(productID: string): Observable<string> {
     let token = this._authService.getUserData().token;
     return this._Http.delete<string>(`${this._rootURL}/${productID}`, this.authHeader(token));
   }
-  createProduct(productID: string,): Observable<IProduct> {
+  addProduct(productID: string,): Observable<IProduct> {
     let token = this._authService.getUserData().token;
-    return this._Http.post<IProduct>(`${this._rootURL}`,{"product_id": productID}, this.authHeader(token));
+    return this._Http.post<IProduct>(`${this._rootURL}`,{product_id: productID}, this.authHeader(token));
   }
 
 }
