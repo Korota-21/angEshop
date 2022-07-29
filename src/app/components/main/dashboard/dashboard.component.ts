@@ -8,8 +8,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  // tab="dashboard";
-  tab = "wish-list";
+  tab="dashboard";
   constructor(public _authService: AuthService, private _router: Router, ) { }
 
   ngOnInit(): void {

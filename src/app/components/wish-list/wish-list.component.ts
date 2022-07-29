@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { IProduct } from 'src/app/interfaces/product';
 import { WishListService } from 'src/app/services/wish-list/wish-list.service';
 
@@ -9,12 +10,15 @@ import { WishListService } from 'src/app/services/wish-list/wish-list.service';
 })
 export class WishListComponent implements OnInit {
   wishList!: IProduct[]
+  subscribtion!: Subscription;
 
-  constructor(private _wishListService: WishListService) { }
+  constructor(private _wishListService: WishListService,) { }
 
   ngOnInit(): void {
     this.getWishList()
-
+    this.subscribtion = this._wishListService.productsChange.subscribe((products:IProduct[]) => {
+      this.wishList = products;
+    })
   }
   getWishList() {
     this._wishListService.getWishList().subscribe(
@@ -24,5 +28,13 @@ export class WishListComponent implements OnInit {
         this.wishList = res;
       }
     );
+  }
+  deleteProduct(productsId: string) {
+    if (confirm('Are you sure you want to delete this product?'))
+      this._wishListService.deleteProduct(productsId).subscribe(
+        () => {
+          this._wishListService.updateProductList();
+        }
+      );
   }
 }

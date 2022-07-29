@@ -43,8 +43,8 @@
             </div>
             <div [ngSwitch]="tab" class="col-12 col-md-7 col-sm-12 col-lg-9">
                 <div *ngSwitchCase="'dashboard'">
-                    <p>Hello {{_authService.getUserData().user.name}} (wanna logout? <span class="text-warning" (click)="logout()">Log out</span>)</p>
-                    From your account dashboard you can view your <a href="#">wish list</a>
+                    <p>Hello {{_authService.getUserData().user.name}} (wanna logout? <span class="text-primary" (click)="logout()">Log out</span>)</p>
+                    From your account dashboard you can view your <span class="text-primary" (click)="tab ='wish-list'">wish list</span>
                     <!-- , manage your <a href="#">cart</a>
     and <a href="#">edit your password and account details</a>. -->
                 </div>

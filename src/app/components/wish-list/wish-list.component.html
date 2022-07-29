@@ -1,4 +1,4 @@
-<table class="table table-striped" cellspacing="0" *ngIf="wishList">
+<table class="table " cellspacing="0" *ngIf="wishList">
     <thead>
         <tr>
             <th class="product-thumbnail"> </th>
@@ -12,7 +12,7 @@
         <tr class="cart_item" *ngFor="let product of wishList">
 
             <td class="product-thumbnail" data-title="Thumbnail"><br>
-                <a routerLink="/product-single/{{product._id}}"><img src="http://localhost:8000/uploads/product/{{product.image}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" style="width:100px;" alt="product image"></a><br>
+                <a routerLink="/product-single/{{product._id}}"><img src="http://localhost:8000/uploads/product/{{product.image}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" style="width:50px;" alt="product image"></a><br>
             </td>
 
             <td class="product-name" data-title="Product"><br>
@@ -26,7 +26,7 @@
 
 
             <td class="product-remove" data-title="Remove">
-                <a href="#" class="remove" aria-label="Remove this item" data-product_id="30" data-product_sku="">×</a>
+                <div class="text-danger" aria-label="Remove this item" (click)="deleteProduct(product._id)" data-product_id="30" data-product_sku="">×</div>
             </td>
         </tr>
 
