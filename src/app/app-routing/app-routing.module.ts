@@ -18,7 +18,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { AdminAuthGuard } from '../guards/admin-auth/admin-auth.guard';
 import { ViewProductAdminComponent } from '../admin/view-product-admin/view-product-admin.component';
 import { EditProductComponent } from '../admin/edit-product/edit-product.component';
-import { WishListComponent } from '../components/wish-list/wish-list.component';
+import { AuthGuard } from '../guards/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -29,7 +29,7 @@ const routes: Routes = [
       { path: "checkout", component: CheckoutComponent },
       { path: "shop", component: ShopComponent },
       {
-        path: "dashboard", component: DashboardComponent
+        path: "dashboard", canActivate: [AuthGuard],component: DashboardComponent
       },
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent },
@@ -50,7 +50,7 @@ const routes: Routes = [
 
 ];
 @NgModule({
-  providers: [AuthService, AdminAuthGuard],
+  providers: [AuthService, AdminAuthGuard,AuthGuard],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 
