@@ -29,6 +29,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AuthService } from './services/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { EditProductComponent } from './admin/edit-product/edit-product.componen
     ProductListComponent,
     CreateProductComponent,
     ViewProductAdminComponent,
-    EditProductComponent
+    EditProductComponent,
+    WishListComponent
   ],
   imports: [
     BrowserModule,

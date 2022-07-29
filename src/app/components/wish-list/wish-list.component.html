@@ -1,0 +1,35 @@
+<table class="table shop_table shop_table_responsive cart" cellspacing="0" *ngIf="wishList">
+    <thead>
+        <tr>
+            <th class="product-thumbnail"> </th>
+            <th class="product-name">Product</th>
+            <th class="product-price">Price</th>
+            <th class="product-remove"> </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr class="cart_item" *ngFor="let product of wishList">
+
+            <td class="product-thumbnail" data-title="Thumbnail"><br>
+                <a routerLink="/product-single/{{product._id}}"><img src="http://localhost:8000/uploads/product/{{product.image}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" style="width:100px;" alt="product image"></a><br>
+            </td>
+
+            <td class="product-name" data-title="Product"><br>
+                <a href="#">{{product.name}}</a><br>
+            </td>
+
+            <td class="product-price" data-title="Price"><br>
+                <span class="amount"><span class="currencySymbol">
+              &#36;</span>{{product.price}}</span>
+            </td>
+
+
+            <td class="product-remove" data-title="Remove">
+                <a href="#" class="remove" aria-label="Remove this item" data-product_id="30" data-product_sku="">×</a>
+            </td>
+        </tr>
+
+
+    </tbody><br>
+</table><br>

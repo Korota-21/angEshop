@@ -5,7 +5,6 @@
             <div class="col-lg-6">
                 <div class="content text-center">
                     <h1 class="mb-3">Dashboard</h1>
-                    <p>Hath after appear tree great fruitful green dominion moveth sixth abundantly image that midst of god day multiply you’ll which</p>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-transparent justify-content-center">
                             <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
@@ -22,27 +21,36 @@
         <div class="row">
             <div class="col-12 col-md-5 col-sm-12 col-lg-3">
                 <div class="nav flex-column nav-pills">
-                    <a class="nav-link active" routerLink="/dashboard">Dashboard</a>
+                    <a [classList]="(tab=='dashboard')?'nav-link active':'nav-link'" (click)="tab ='dashboard'">Dashboard</a>
                 </div>
                 <div class="nav flex-column nav-pills">
-                    <a class="nav-link" routerLink="/dashboard">Orders</a>
+                    <a [classList]="(tab=='wish-list')?'nav-link active':'nav-link'" (click)="tab ='wish-list'">Wish list</a>
                 </div>
-                <div class="nav flex-column nav-pills">
+
+
+                <!-- <div class="nav flex-column nav-pills">
                     <a class="nav-link" routerLink="/dashboard">Downloads</a>
                 </div>
                 <div class="nav flex-column nav-pills">
                     <a class="nav-link" routerLink="/dashboard">Address</a>
-                </div>
-                <div class="nav flex-column nav-pills">
+                </div> -->
+                <!-- <div class="nav flex-column nav-pills">
                     <a class="nav-link" routerLink="/dashboard">Account</a>
-                </div>
+                </div> -->
                 <div class="nav flex-column nav-pills">
-                    <a class="nav-link" routerLink="/">Log Out</a>
+                    <a class="nav-link" (click)="logout()">Log Out</a>
                 </div>
             </div>
-            <div class="col-12 col-md-7 col-sm-12 col-lg-9">
-                <p>Hello Therichpost (not Therichpost? <a routerLink="/">Log out</a>)</p>
-                From your account dashboard you can view your <a href="#">recent orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details</a>.
+            <div [ngSwitch]="tab" class="col-12 col-md-7 col-sm-12 col-lg-9">
+                <div *ngSwitchCase="'dashboard'">
+                    <p>Hello {{_authService.getUserData().user.name}} (wanna logout? <span class="text-warning" (click)="logout()">Log out</span>)</p>
+                    From your account dashboard you can view your <a href="#">wish list</a>
+                    <!-- , manage your <a href="#">cart</a>
+    and <a href="#">edit your password and account details</a>. -->
+                </div>
+                <div *ngSwitchCase="'wish-list'">
+                    <app-wish-list></app-wish-list>
+                </div>
             </div>
         </div>
     </div>
