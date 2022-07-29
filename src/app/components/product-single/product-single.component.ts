@@ -12,7 +12,12 @@ import { WishListService } from 'src/app/services/wish-list/wish-list.service';
 export class ProductSingleComponent implements OnInit {
 
   product!: IProduct;
-
+  wishMessage =
+    {
+      active: false,
+      message: "",
+      class: ""
+    };
   constructor(private _activateRoute: ActivatedRoute,
     private _productService: ProductService,
     private _router: Router, private _wishListService: WishListService
@@ -35,23 +40,23 @@ export class ProductSingleComponent implements OnInit {
       );
     })
   }
-  deleteProduct(productsId: string) {
-    if (confirm('Are you sure you want to delete this product?'))
-      this._productService.deleteProduct(productsId).subscribe(
-        () => {
-          this._productService.updateProductList();
-          this._router.navigate(['/admin']);
 
-        }
-      );
-  }
   addToWishList() {
     this._wishListService.addProduct(this.product._id).subscribe(
       res => {
-        console.log(res);
+        this.wishMessageUpdate("the product has been added successfully to the wish list", "alert-success")
       },
-      err => console.log(err)
+
+      err => {
+        this.wishMessageUpdate("the product has already been added", "alert-info")
+      }
     );
+  }
+  wishMessageUpdate(message: string, type: "alert-info" | "alert-success") {
+    this.wishMessage.message = message;
+    this.wishMessage.class = type;
+    this.wishMessage.active = true;
+
   }
 }
 

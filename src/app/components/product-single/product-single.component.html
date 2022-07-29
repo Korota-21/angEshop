@@ -58,7 +58,9 @@
                         </div>
 
                         <b (click)="addToWishList()" class="text-primary">Add to wish list</b>
-
+                        <div *ngIf="wishMessage.active" class="alert {{wishMessage.class}}" role="alert">
+                            {{wishMessage.message}}
+                        </div>
 
 
                         <div class="product-share mt-5">
