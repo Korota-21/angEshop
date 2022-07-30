@@ -57,40 +57,25 @@
                 </a>
                 <div class="dropdown-menu cart-dropdown">
                     <!-- Cart Item -->
-                    <div class="media">
+                    <div class="media" *ngFor="let item of cartItems">
                         <a routerLink="/product-single">
-                            <img class="media-object img- mr-3" src="assets/images/cart-1.jpg" alt="image" />
+                            <img class="media-object img- mr-3" src="http://localhost:8000/uploads/product/{{item.product.image}}" alt="image" />
                         </a>
                         <div class="media-body">
-                            <h6>Ladies Bag</h6>
+                            <h6>{{item.product.name}}</h6>
                             <div class="cart-price">
-                                <span>1 x</span>
-                                <span>1250.00</span>
+                                <span>{{item.quantity}} x</span>
+                                <span>{{item.product.price}}</span>
                             </div>
                         </div>
-                        <a href="#" class="remove"><i class="tf-ion-close"></i></a>
+                        <div class="remove" (click)="deleteProduct(item._id)"><i class="tf-ion-close"></i></div>
                     </div>
                     <!-- / Cart Item -->
 
-                    <!-- Cart Item -->
-                    <div class="media">
-                        <a routerLink="/product-single">
-                            <img class="media-object img-fluid mr-3" src="assets/images/cart-2.jpg" alt="image" />
-                        </a>
-                        <div class="media-body">
-                            <h6>Skinny Jeans</h6>
-                            <div class="cart-price">
-                                <span>1 x</span>
-                                <span>1250.00</span>
-                            </div>
-                        </div>
-                        <a href="#" class="remove"><i class="tf-ion-close"></i></a>
-                    </div>
-                    <!-- / Cart Item -->
 
                     <div class="cart-summary">
                         <span class="h6">Total</span>
-                        <span class="total-price h6">$1799.00</span>
+                        <span class="total-price h6">${{sum}}</span>
 
                         <div class="text-center cart-buttons mt-3">
                             <a routerLink="/cart" class="btn btn-small btn-transparent btn-block">View Cart</a>
