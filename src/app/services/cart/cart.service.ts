@@ -37,7 +37,10 @@ export class CartService {
     let token = this._authService.getUserData().token;
     return this._Http.delete<string>(`${this._rootURL}/${cartItemeID}`, this.authHeader(token));
   }
-  addProduct(cartItem: IcartItem): Observable<IProduct> {
+  addProduct(productId: string, quantity: string): Observable<IProduct> {
+    let cartItem = {
+      product: productId, quantity: quantity
+    }
     let token = this._authService.getUserData().token;
     return this._Http.post<IProduct>(`${this._rootURL}`, cartItem, this.authHeader(token));
   }

@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
     this._cartService.getCartList().subscribe(
       (res) => {
         this.cartItems = res;
-        console.log(this.cartItems);
         this.getCostSum();
       }, (err) => { console.log(err); }
     );

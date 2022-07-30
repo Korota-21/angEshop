@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from 'src/app/interfaces/product';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { WishListService } from 'src/app/services/wish-list/wish-list.service';
 
@@ -12,7 +13,7 @@ import { WishListService } from 'src/app/services/wish-list/wish-list.service';
 export class ProductSingleComponent implements OnInit {
 
   product!: IProduct;
-  wishMessage =
+  message =
     {
       active: false,
       message: "",
@@ -20,7 +21,8 @@ export class ProductSingleComponent implements OnInit {
     };
   constructor(private _activateRoute: ActivatedRoute,
     private _productService: ProductService,
-    private _router: Router, private _wishListService: WishListService
+    private _router: Router, private _wishListService: WishListService,
+    private _cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -41,21 +43,35 @@ export class ProductSingleComponent implements OnInit {
     })
   }
 
-  addToWishList() {
-    this._wishListService.addProduct(this.product._id).subscribe(
+  addToCart(quantity: string) {
+
+    this._cartService.addProduct(this.product._id, quantity).subscribe(
       res => {
-        this.wishMessageUpdate("the product has been added successfully to the wish list", "alert-success")
+        this.messageUpdate("the product has been added successfully to the cart", "alert-success")
+        this._cartService.updateProductList();
+
       },
 
       err => {
-        this.wishMessageUpdate("the product has already been added", "alert-info")
+        this.messageUpdate("the product has already been added", "alert-info")
       }
     );
   }
-  wishMessageUpdate(message: string, type: "alert-info" | "alert-success") {
-    this.wishMessage.message = message;
-    this.wishMessage.class = type;
-    this.wishMessage.active = true;
+  addToWishList() {
+    this._wishListService.addProduct(this.product._id).subscribe(
+      res => {
+        this.messageUpdate("the product has been added successfully to the wish list", "alert-success")
+      },
+
+      err => {
+        this.messageUpdate("the product has already been added", "alert-info")
+      }
+    );
+  }
+  messageUpdate(message: string, type: "alert-info" | "alert-success") {
+    this.message.message = message;
+    this.message.class = type;
+    this.message.active = true;
 
   }
 }

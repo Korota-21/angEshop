@@ -43,8 +43,8 @@
                         {{product.description}} </p>
                     <form class="cart" action="#" method="post">
                         <div class="quantity d-flex align-items-center">
-                            <input type="number" id="#" class="input-text qty text form-control w-25 mr-3" step="1" min="1" max="{{(product.quantity >= 9)?9:product.quantity}}" name="quantity" value="1" title="Qty" size="4">
-                            <a href="#" class="btn btn-main btn-small">Add to cart</a>
+                            <input type="number" id="#" class="input-text qty text form-control w-25 mr-3" #quantity step="1" min="1" max="{{(product.quantity >= 9)?9:product.quantity}}" name="quantity" value="1" title="Qty" size="4">
+                            <a (click)="addToCart(quantity.value)" class="btn btn-main btn-small">Add to cart</a>
                         </div>
                     </form>
 
@@ -58,8 +58,8 @@
                         </div>
 
                         <b (click)="addToWishList()" class="text-primary">Add to wish list</b>
-                        <div *ngIf="wishMessage.active" class="alert {{wishMessage.class}}" role="alert">
-                            {{wishMessage.message}}
+                        <div *ngIf="message.active" class="alert {{message.class}}" role="alert">
+                            {{message.message}}
                         </div>
 
 
