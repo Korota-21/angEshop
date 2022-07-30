@@ -49,8 +49,6 @@ export class HeaderComponent implements OnInit {
       this._cartService.deleteProduct(cartItemId).subscribe(
         () => {
           this._cartService.updateProductList();
-          // this._router.navigate(['/admin']);
-
         }
       );
   }
