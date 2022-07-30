@@ -16,9 +16,9 @@
                 <div class="footer-widget">
                     <h4 class="mb-4">Category</h4>
                     <ul class="pl-0 list-unstyled mb-0">
-                        <li><a href="#">Men's Fashion</a></li>
-                        <li><a href="#">Women's Fashion</a></li>
-                        <li><a href="#">Kids Fashion</a></li>
+                        <li><a routerLink="/shop" [queryParams]="{ tags: 'men'}">Men's Fashion</a></li>
+                        <li><a routerLink="/shop" [queryParams]="{ tags: 'women'}">Women's Fashion</a></li>
+                        <li><a routerLink="/shop" [queryParams]="{ tags: 'children'}">Kids Fashion</a></li>
                         <li><a href="#">Accessories</a></li>
                         <li><a href="#">Shoe Collection</a></li>
                     </ul>

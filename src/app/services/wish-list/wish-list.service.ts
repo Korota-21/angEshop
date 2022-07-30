@@ -4,12 +4,13 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
 import { IProduct } from 'src/app/interfaces/product';
 import { AuthService } from '../auth/auth.service';
+import * as AppUtil from "../../common/app.util"
 
 @Injectable({
   providedIn: 'root'
 })
 export class WishListService {
-  private _rootURL = "http://localhost:8000/api/wishProduct"
+  private _rootURL = AppUtil.API_LINK+"wishProduct"
   products!: IProduct[];
   public productsChange: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>(this.products);
 

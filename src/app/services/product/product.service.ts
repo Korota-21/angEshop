@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IProduct } from '../../interfaces/product';
 import { AuthService } from '../auth/auth.service';
+import * as AppUtil from "../../common/app.util"
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private _rootURL = "http://localhost:8000/api/product"
+  private _rootURL = AppUtil.API_LINK+"product"
   products!: IProduct[];
   public productsChange: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>(this.products);
   public colorsList = ['red', 'blue', 'black', 'yellow'];

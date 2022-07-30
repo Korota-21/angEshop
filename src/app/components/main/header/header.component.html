@@ -24,7 +24,7 @@
                     <!-- / Shop -->
 
                     <!-- Account -->
-                    <li *ngIf="_authService.isUserLoggedIn()" class="nav-item dropdown dropdown-slide">
+                    <!-- <li *ngIf="_authService.isUserLoggedIn()" class="nav-item dropdown dropdown-slide">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5" role="button" data-delay="350" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Account
           </a>
@@ -34,7 +34,7 @@
                             <li><a href="#">Profile Details</a></li>
                             <li><a (click)="logout()">Logout</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <!-- / Account -->
                     <li *ngIf="!_authService.isUserLoggedIn()" class="nav-item"><a class="nav-link" routerLink="/login">Login Page</a></li>
 
@@ -46,10 +46,8 @@
 
         <!-- Navbar-collapse -->
 
-        <ul class="top-menu list-inline mb-0 d-none d-lg-block" id="top-menu">
-            <li class="list-inline-item">
-                <a href="#" class="search_toggle" id="search-icon"><i class="tf-ion-android-search"></i></a>
-            </li>
+        <ul class="top-menu list-inline mb-0 d-none d-lg-block" *ngIf="_authService.isUserLoggedIn()" id="top-menu">
+
 
             <li class="dropdown cart-nav dropdown-slide list-inline-item">
                 <a href="#" class="dropdown-toggle cart-icon" data-toggle="dropdown" data-hover="dropdown">
@@ -84,7 +82,7 @@
                     </div>
                 </div>
             </li>
-            <li class="list-inline-item"><a href="#"><i class="tf-ion-ios-person mr-3"></i></a></li>
+            <li class="list-inline-item"><a routerLink="/dashboard"><i class="tf-ion-ios-person mr-3"></i></a></li>
         </ul>
     </div>
 </nav>

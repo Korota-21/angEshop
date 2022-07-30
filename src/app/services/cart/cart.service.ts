@@ -4,12 +4,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { IProduct } from 'src/app/interfaces/product';
 import { AuthService } from '../auth/auth.service';
 import { IcartItem } from '../../interfaces/cartItem';
+import * as AppUtil from "../../common/app.util"
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private _rootURL = "http://localhost:8000/api/cartProduct";
+  private _rootURL = AppUtil.API_LINK+"cartProduct";
   cart!: IcartItem[];
   public cartChange: BehaviorSubject<IcartItem[]> = new BehaviorSubject<IcartItem[]>(this.cart);
 
