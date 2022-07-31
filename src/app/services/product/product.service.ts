@@ -9,11 +9,11 @@ import * as AppUtil from "../../common/app.util"
   providedIn: 'root'
 })
 export class ProductService {
-  private _rootURL = AppUtil.API_LINK+"product"
+  private _rootURL = AppUtil.API_LINK+"api/product"
   products!: IProduct[];
   public productsChange: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>(this.products);
   public colorsList = ['red', 'blue', 'black', 'yellow'];
-  public tagsList = ["top", "bottom", "children", "men", "women"];
+  public tagsList = ["top", "bottom", "men", "women"];
   constructor(private _authService: AuthService, private _Http: HttpClient) { }
   getProducts(): IProduct[] {
     return this.products;

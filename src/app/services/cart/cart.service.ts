@@ -11,7 +11,7 @@ import * as AppUtil from "../../common/app.util"
   providedIn: 'root'
 })
 export class CartService {
-  private _rootURL = AppUtil.API_LINK+"cartProduct";
+  private _rootURL = AppUtil.API_LINK+"api/cartProduct";
   cart!: IcartItem[];
   public cartChange: BehaviorSubject<IcartItem[]> = new BehaviorSubject<IcartItem[]>(this.cart);
 

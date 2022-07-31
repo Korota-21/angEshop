@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { IProduct } from 'src/app/interfaces/product';
 import { WishListService } from 'src/app/services/wish-list/wish-list.service';
+import * as AppUtil from "../../common/app.util";
 
 @Component({
   selector: 'app-wish-list',
@@ -11,6 +12,7 @@ import { WishListService } from 'src/app/services/wish-list/wish-list.service';
 export class WishListComponent implements OnInit {
   wishList!: IProduct[]
   subscribtion!: Subscription;
+  src = AppUtil.API_LINK;
 
   constructor(private _wishListService: WishListService,) { }
 

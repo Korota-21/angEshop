@@ -4,6 +4,7 @@ import { IProduct } from 'src/app/interfaces/product';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { WishListService } from 'src/app/services/wish-list/wish-list.service';
+import * as AppUtil from "../../common/app.util";
 
 @Component({
   selector: 'app-product-single',
@@ -19,6 +20,8 @@ export class ProductSingleComponent implements OnInit {
       message: "",
       class: ""
     };
+    src = AppUtil.API_LINK;
+
   constructor(private _activateRoute: ActivatedRoute,
     private _productService: ProductService,
     private _router: Router, private _wishListService: WishListService,

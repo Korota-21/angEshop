@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { IcartItem } from 'src/app/interfaces/cartItem';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import * as AppUtil from "../../common/app.util";
 
 @Component({
   selector: 'app-cart',
@@ -14,6 +15,8 @@ export class CartComponent implements OnInit {
   subscribtion!: Subscription;
   sum = 0;
   shipping = 0;
+  src = AppUtil.API_LINK;
+
   constructor(public productService: ProductService, private _cartService: CartService) { }
 
   ngOnInit(): void {

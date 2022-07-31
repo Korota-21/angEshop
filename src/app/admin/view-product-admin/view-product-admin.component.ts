@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product/product.service';
+import * as AppUtil from "../../common/app.util";
 
 @Component({
   selector: 'app-view-product-admin',
@@ -10,6 +11,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 })
 export class ViewProductAdminComponent implements OnInit {
   product!: IProduct;
+  src = AppUtil.API_LINK;
 
   constructor(private _activateRoute: ActivatedRoute,
      private _productService: ProductService,

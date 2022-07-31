@@ -5,6 +5,7 @@ import { IcartItem } from 'src/app/interfaces/cartItem';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import * as AppUtil from "../../../common/app.util";
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,8 @@ export class HeaderComponent implements OnInit {
   cartItems!: IcartItem[];
   subscribtion!: Subscription;
   sum = 0;
+  src = AppUtil.API_LINK;
+
   constructor(public _authService: AuthService, private _router: Router,
     public productService: ProductService, private _cartService: CartService) {
     this.loggedIn = this._authService.isUserLoggedIn();

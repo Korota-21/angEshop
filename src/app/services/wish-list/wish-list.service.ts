@@ -10,7 +10,7 @@ import * as AppUtil from "../../common/app.util"
   providedIn: 'root'
 })
 export class WishListService {
-  private _rootURL = AppUtil.API_LINK+"wishProduct"
+  private _rootURL = AppUtil.API_LINK+"api/wishProduct"
   products!: IProduct[];
   public productsChange: BehaviorSubject<IProduct[]> = new BehaviorSubject<IProduct[]>(this.products);
 

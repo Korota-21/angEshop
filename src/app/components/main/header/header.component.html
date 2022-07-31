@@ -57,7 +57,7 @@
                     <!-- Cart Item -->
                     <div class="media" *ngFor="let item of cartItems">
                         <a routerLink="/product-single">
-                            <img class="media-object img- mr-3" src="http://localhost:8000/uploads/product/{{item.product.image}}" alt="image" />
+                            <img class="media-object img- mr-3" src="{{src}}uploads/product/{{item.product.image}}" alt="image" />
                         </a>
                         <div class="media-body">
                             <h6>{{item.product.name}}</h6>

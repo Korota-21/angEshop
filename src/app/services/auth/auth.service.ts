@@ -7,7 +7,7 @@ import * as AppUtil from "../../common/app.util"
   providedIn: 'root'
 })
 export class AuthService {
-  private _rootURL = AppUtil.API_LINK+"auth"
+  private _rootURL = AppUtil.API_LINK+"api/auth"
   constructor(
     private _Http: HttpClient
   ) { }

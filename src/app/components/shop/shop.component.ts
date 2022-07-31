@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IProduct } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product/product.service';
+import * as AppUtil from "../../common/app.util";
 
 @Component({
   selector: 'app-shop',
@@ -17,6 +18,7 @@ export class ShopComponent implements OnInit {
   subscribtion!: Subscription;
   pagination = 12
   page= 1
+  src = AppUtil.API_LINK;
 
   constructor(private _productService: ProductService, private _activateRoute: ActivatedRoute, private router: Router) { }
 

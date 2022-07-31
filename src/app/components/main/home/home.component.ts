@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IProduct } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product/product.service';
+import * as AppUtil from "../../../common/app.util";
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class HomeComponent implements OnInit {
   products!: IProduct[];
   subscribtion!: Subscription;
+  src = AppUtil.API_LINK;
   constructor(private _productService: ProductService) { }
 
   ngOnInit(): void {

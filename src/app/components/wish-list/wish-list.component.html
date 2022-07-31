@@ -12,7 +12,7 @@
         <tr class="cart_item" *ngFor="let product of wishList">
 
             <td class="product-thumbnail" data-title="Thumbnail"><br>
-                <a routerLink="/product-single/{{product._id}}"><img src="http://localhost:8000/uploads/product/{{product.image}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" style="width:50px;" alt="product image"></a><br>
+                <a routerLink="/product-single/{{product._id}}"><img src="{{src}}uploads/product/{{product.image}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" style="width:50px;" alt="product image"></a><br>
             </td>
 
             <td class="product-name" data-title="Product"><br>
