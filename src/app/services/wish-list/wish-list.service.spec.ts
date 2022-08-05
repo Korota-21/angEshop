@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
 import { WishListService } from './wish-list.service';
@@ -6,7 +7,10 @@ describe('WishListService', () => {
   let service: WishListService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [WishListService]
+    });
     service = TestBed.inject(WishListService);
   });
 

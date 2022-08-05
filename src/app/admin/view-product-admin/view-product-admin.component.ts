@@ -24,7 +24,6 @@ export class ViewProductAdminComponent implements OnInit {
 
   getProduct() {
     this._activateRoute.params.subscribe((params) => {
-
       this._productService.getProduct(params['id']).subscribe(
         product => {
           if (!product)

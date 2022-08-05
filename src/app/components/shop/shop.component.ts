@@ -30,8 +30,6 @@ export class ShopComponent implements OnInit {
   }
   getProduct() {
     this._activateRoute.queryParams.subscribe((params: any) => {
-
-
           (params.page) ? this.page = params.page : 1;
       this._productService.getProductList(this.pagination, params.page, true, params.colors, params.tags).subscribe(
         (res) => {

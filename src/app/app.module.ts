@@ -61,7 +61,8 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
     FormsModule,
     Ng2SearchPipeModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

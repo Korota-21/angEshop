@@ -1,12 +1,8 @@
 <div *ngIf="product" class="product-view overflow-auto">
-
-
     <div>
         <div class="w-100 d-flex justify-content-center">
-
-            <a routerLink="/product-single"><img src="{{src}}uploads/product/{{product.image}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""></a>
+            <a routerLink="/product-single"><img src="{{src}}uploads/product/{{product.image}}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail w-50" alt=""></a>
         </div>
-
         <div class="form-group mt-2">
             <label for="name">Product name</label>
             <p>{{product.name}}</p>
@@ -27,7 +23,6 @@
             <label for="color">Product color</label>
             <div class="" *ngFor="let color of product.colors">
                 <label class="form-check-label">{{color}}</label>
-
             </div>
         </div>
         <div class="mt-2">
@@ -40,13 +35,11 @@
             <p class="text-success" *ngIf="product.availability" for="availability">available</p>
             <p class="text-danger" *ngIf="!product.availability" for="availability">not available</p>
         </div>
-
         <div class="modal-footer">
             <a routerLink="/admin/update/{{product._id}}">
                 <button type="button" class="btn btn-info">Edit</button>
             </a>
             <button type="button" class="btn btn-danger" (click)="deleteProduct(product._id)">delete</button>
-
         </div>
     </div>
 </div>
