@@ -1,23 +1,25 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { UserListComponent } from './user-list.component';
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
-  let routerSpy = {navigate: jasmine.createSpy('navigate')};
+  let routerSpy = { navigate: jasmine.createSpy('navigate') };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserListComponent ],
+      declarations: [UserListComponent],
       providers: [
         { provide: Router, useValue: routerSpy }
       ],
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule,
+        Ng2SearchPipeModule]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -26,7 +28,8 @@ describe('UserListComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
 });

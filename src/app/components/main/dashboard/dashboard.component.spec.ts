@@ -9,6 +9,7 @@ describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
   let routerSpy = { navigate: jasmine.createSpy('navigate') };
+
   const AuthServiceSpy = jasmine.createSpyObj<AuthService>(['getUserData'])
   AuthServiceSpy.getUserData.and.returnValue({
     user: {
@@ -27,8 +28,7 @@ describe('DashboardComponent', () => {
         { provide: Router, useValue: routerSpy },
         { provide: AuthService, useValue: AuthServiceSpy  }
       ],
-      imports: [HttpClientTestingModule
-      ],
+      imports: [HttpClientTestingModule],
       schemas: [NO_ERRORS_SCHEMA]
 
     })
