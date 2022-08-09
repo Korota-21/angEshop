@@ -28,4 +28,23 @@ describe('AdminLoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('component initial state', () => {
+    expect(component.email).toBeUndefined();
+    expect(component.password).toBeUndefined();
+    expect(component.err).toBeFalsy();
+    expect(component.errMessage).toEqual("");
+  });
+  it('should be print "All Field are required" when submit with undefined email or password', () => {
+    component.submitted();
+    expect(component.err).toBeTruthy();
+    expect(component.errMessage).toEqual("All Field are required");
+  });
+  it('err should be false when submit with valid user', () => {
+    component.email = "user@user.com"
+    component.password = "password"
+    component.submitted();
+    expect(component.err).toBeFalse();
+    expect(component.errMessage).toEqual("");
+
+  });
 });
