@@ -1,9 +1,7 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IProduct } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product/product.service';
 
-// import Validation from './utils/validation';
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
@@ -26,11 +24,8 @@ export class CreateProductComponent implements OnInit {
   productColors: string[] = [];
   productTags: string[] = [];
   submitted = false;
-  onChange(event: any) {
-    if (event.target.files[0].type.includes("image"))
-      this.file = event.target.files[0];
-  }
-  constructor(private formBuilder: FormBuilder, private _productService: ProductService,) {
+
+  constructor(private formBuilder: FormBuilder, private _productService: ProductService) {
   }
 
   ngOnInit(): void {
@@ -45,6 +40,10 @@ export class CreateProductComponent implements OnInit {
       quantity: [0, Validators.required],
       availability: [true,],
     })
+  }
+  onChange(event: any) {
+    if (event.target.files[0].type.includes("image"))
+      this.file = event.target.files[0];
   }
   get f(): { [key: string]: AbstractControl } {
     return this.productForm.controls;

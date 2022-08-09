@@ -1,4 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -17,8 +18,11 @@ describe('UserListComponent', () => {
         { provide: Router, useValue: routerSpy }
       ],
       imports: [HttpClientTestingModule,
-        Ng2SearchPipeModule]
+        Ng2SearchPipeModule],
+        schemas :[CUSTOM_ELEMENTS_SCHEMA]
+
     })
+
       .compileComponents();
   });
 

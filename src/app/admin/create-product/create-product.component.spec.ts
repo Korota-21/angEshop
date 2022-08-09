@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { CreateProductComponent } from './create-product.component';
@@ -16,9 +16,9 @@ describe('CreateProductComponent', () => {
       declarations: [CreateProductComponent],
       providers: [
         { provide: FormBuilder, useValue: formBuilder },
-        { provide: Router, useValue: routerSpy }
+        { provide: Router, useValue: routerSpy },
       ],
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule,FormsModule,ReactiveFormsModule]
     })
       .compileComponents();
   });
