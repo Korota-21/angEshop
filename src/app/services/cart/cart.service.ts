@@ -11,7 +11,7 @@ import * as AppUtil from "../../common/app.util"
   providedIn: 'root'
 })
 export class CartService {
-  private _rootURL = AppUtil.API_LINK+"api/cartProduct";
+  private _rootURL = AppUtil.API_LINK + "api/cartProduct";
   cart!: IcartItem[];
   public cartChange: BehaviorSubject<IcartItem[]> = new BehaviorSubject<IcartItem[]>(this.cart);
 
@@ -49,7 +49,7 @@ export class CartService {
   updateProduct(cart_itemID: string, quantity: string): Observable<IProduct> {
 
     let token = this._authService.getUserData().token;
-    return this._Http.patch<IProduct>(`${this._rootURL}/${cart_itemID}`, { quantity: quantity}, this.authHeader(token));
+    return this._Http.patch<IProduct>(`${this._rootURL}/${cart_itemID}`, { quantity: quantity }, this.authHeader(token));
   }
 
 }
