@@ -38,8 +38,7 @@ jobs:
       - name: List Files
         run: ls -a
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.2
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages  # Or the branch you want to deploy to
-          FOLDER: dist
+          folder: dist
