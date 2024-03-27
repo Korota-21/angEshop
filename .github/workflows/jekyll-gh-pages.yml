@@ -2,11 +2,15 @@ name: Deploy Angular with GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
-  # push:
-  #   branches: ["master"]
+  push:
+    branches: ["master"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   # Build job
@@ -24,8 +28,8 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      - name: Build Angular app
-        run: npm run build
+      # - name: Build Angular app
+      #   run: npm run build
          
   # Deployment job
   deploy:
@@ -37,8 +41,13 @@ jobs:
     steps:
       - name: List Files
         run: ls -a
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
-          folder: dist
+          # Upload entire repository
+          path: 'dist/ang-eshop'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
