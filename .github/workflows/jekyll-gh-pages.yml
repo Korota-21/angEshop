@@ -42,4 +42,4 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages  # Or the branch you want to deploy to
-          FOLDER: ./
+          FOLDER: dist
