@@ -1,47 +1,31 @@
-name: Deploy Angular with GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["master"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    branches:
+      - main  # Change this to your main branch name
 
 jobs:
-  # Build job
-  build-deploy:
-    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
+  deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.build.outputs.artifacts }}  # Output from the build job
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
-      
-      - name: Build Angular app
-        run: npm run build   
-        
-        # Deployment job
-      - name: List Files
-        run: ls -a
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          token: ${{ secrets.ACCESS_TOKEN }}
-          # Upload entire repository
-          folder: 'dist/ang-eshop'
 
+      - name: Build Angular app
+        run: npm run build --prod
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/angEshop
