@@ -3,19 +3,13 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master  # Change this to your main branch name
+      - master
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.build.outputs.artifacts }}  # Output from the build job
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
